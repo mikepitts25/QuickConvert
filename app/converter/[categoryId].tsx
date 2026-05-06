@@ -10,7 +10,6 @@ import {
 import { useLocalSearchParams, Stack } from 'expo-router';
 import { getCategoryById } from '../../src/data/categories';
 import { ConverterInput } from '../../src/components/ConverterInput';
-import { SwapButton } from '../../src/components/SwapButton';
 import { UnitPicker } from '../../src/components/UnitPicker';
 import { PresetList } from '../../src/components/PresetList';
 import { useConversion } from '../../src/hooks/useConversion';
@@ -23,7 +22,7 @@ export default function ConverterScreen() {
   const [pairIndex, setPairIndex] = useState(0);
 
   const pair = category?.pairs[pairIndex];
-  const { fromText, toText, updateFrom, updateTo, swap, applyPreset, clear } =
+  const { fromText, toText, updateFrom, updateTo, applyPreset, clear } =
     useConversion(pair ?? category?.pairs[0]!);
 
   useEffect(() => {
@@ -69,8 +68,6 @@ export default function ConverterScreen() {
             onChangeText={updateFrom}
             autoFocus
           />
-
-          <SwapButton onPress={swap} />
 
           <ConverterInput
             unit={pair!.to}
