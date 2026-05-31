@@ -1,34 +1,30 @@
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../src/theme/colors';
+import { Stack } from 'expo-router';
+import { useAppTheme } from '../../src/theme/theme-context';
 
 export default function TabLayout() {
+  const { colors } = useAppTheme();
+
   return (
-    <Tabs
+    <Stack
       screenOptions={{
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.textSecondary,
-        headerShown: false,
+        headerStyle: { backgroundColor: colors.background },
+        headerTintColor: colors.textPrimary,
+        contentStyle: { backgroundColor: colors.background },
       }}
     >
-      <Tabs.Screen
+      <Stack.Screen
         name="index"
         options={{
-          title: 'Convert',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="swap-horizontal" size={size} color={color} />
-          ),
+          headerShown: false,
         }}
       />
-      <Tabs.Screen
+      <Stack.Screen
         name="reference"
         options={{
-          title: 'Reference',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book-outline" size={size} color={color} />
-          ),
+          title: 'Clothing',
+          headerBackTitle: 'Back',
         }}
       />
-    </Tabs>
+    </Stack>
   );
 }

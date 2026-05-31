@@ -11,3 +11,9 @@ export const ovenPresets: Preset[] = [
   { label: '450°F', fromValue: 450, fromUnitId: 'fahrenheit' },
   { label: '500°F', fromValue: 500, fromUnitId: 'fahrenheit' },
 ];
+
+export const temperaturePresets: Preset[] = [
+  { label: 'Freezing point', fromValue: 32, fromUnitId: 'fahrenheit' },
+  { label: 'Boiling point', fromValue: 212, fromUnitId: 'fahrenheit' },
+  ...ovenPresets,
+];

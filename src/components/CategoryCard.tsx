@@ -1,6 +1,7 @@
-import { Pressable, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, StyleSheet, View } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Category } from '../types';
-import { colors } from '../theme/colors';
+import { useAppTheme } from '../theme/theme-context';
 import { spacing } from '../theme/spacing';
 
 interface Props {
@@ -9,23 +10,34 @@ interface Props {
 }
 
 export function CategoryCard({ category, onPress }: Props) {
+  const { colors } = useAppTheme();
   const firstPair = category.pairs[0];
   const subtitle = firstPair
     ? `${firstPair.from.abbreviation} \u2194 ${firstPair.to.abbreviation}`
     : 'Size charts';
+  const cardColor = (colors as Record<string, string>)[category.id] ?? category.color;
 
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [
         styles.card,
-        { backgroundColor: category.color },
+        {
+          backgroundColor: cardColor,
+          borderColor: colors.border,
+        },
         pressed && styles.pressed,
       ]}
     >
-      <Text style={styles.icon}>{category.icon}</Text>
-      <Text style={styles.name}>{category.name}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      <View style={[styles.iconBadge, { backgroundColor: category.icon.backgroundColor }]}>
+        <MaterialCommunityIcons
+          name={category.icon.name}
+          size={30}
+          color={category.icon.color}
+        />
+      </View>
+      <Text style={[styles.name, { color: colors.textPrimary }]}>{category.name}</Text>
+      <Text style={[styles.subtitle, { color: colors.textSecondary }]}>{subtitle}</Text>
     </Pressable>
   );
 }
@@ -40,24 +52,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: colors.border,
   },
   pressed: {
     opacity: 0.7,
     transform: [{ scale: 0.97 }],
   },
-  icon: {
-    fontSize: 32,
+  iconBadge: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: spacing.sm,
   },
   name: {
     fontSize: 16,
     fontWeight: '700',
-    color: colors.textPrimary,
     marginBottom: 2,
   },
   subtitle: {
     fontSize: 12,
-    color: colors.textSecondary,
   },
 });

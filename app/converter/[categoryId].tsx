@@ -13,11 +13,12 @@ import { ConverterInput } from '../../src/components/ConverterInput';
 import { UnitPicker } from '../../src/components/UnitPicker';
 import { PresetList } from '../../src/components/PresetList';
 import { useConversion } from '../../src/hooks/useConversion';
-import { colors } from '../../src/theme/colors';
+import { useAppTheme } from '../../src/theme/theme-context';
 import { spacing } from '../../src/theme/spacing';
 
 export default function ConverterScreen() {
   const { categoryId } = useLocalSearchParams<{ categoryId: string }>();
+  const { colors } = useAppTheme();
   const category = getCategoryById(categoryId ?? '');
   const [pairIndex, setPairIndex] = useState(0);
 
@@ -31,9 +32,9 @@ export default function ConverterScreen() {
 
   if (!category || category.pairs.length === 0) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <Stack.Screen options={{ title: category?.name ?? 'Converter' }} />
-        <Text style={styles.emptyText}>
+        <Text style={[styles.emptyText, { color: colors.textSecondary }]}>
           See the Reference tab for {category?.name ?? 'this category'}.
         </Text>
       </View>
@@ -42,13 +43,14 @@ export default function ConverterScreen() {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={[styles.container, { backgroundColor: colors.background }]}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <Stack.Screen
         options={{
-          title: `${category.icon} ${category.name}`,
+          title: category.name,
           headerStyle: { backgroundColor: colors.background },
+          headerTintColor: colors.textPrimary,
         }}
       />
       <ScrollView
@@ -87,7 +89,6 @@ export default function ConverterScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
   },
   content: {
     padding: spacing.md,
@@ -101,7 +102,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 60,
     fontSize: 16,
-    color: colors.textSecondary,
     paddingHorizontal: spacing.lg,
   },
 });

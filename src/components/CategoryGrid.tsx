@@ -10,8 +10,7 @@ export function CategoryGrid() {
 
   const handlePress = (category: Category) => {
     if (category.id === 'clothing') {
-      // Navigate to reference tab for clothing
-      router.push('/(tabs)/reference');
+      router.push('/reference');
     } else {
       router.push(`/converter/${category.id}`);
     }

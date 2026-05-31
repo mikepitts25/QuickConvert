@@ -1,0 +1,65 @@
+{
+  "configVersion": 0,
+  "apple": {
+    "version": "1.0",
+    "release": {
+      "automaticRelease": true
+    },
+    "info": {
+      "en-US": {
+        "title": "Travel Quick Convert",
+        "subtitle": "Travel Unit Converter",
+        "description": "Travel Quick Convert keeps everyday unit conversions close at hand when you are traveling, cooking, shopping, or comparing measurements across countries.\n\nConvert common measurements quickly:\n- Temperature, including freezing, boiling, and oven presets\n- Distance, speed, weight, volume, and area\n- Cooking measurements for cups, tablespoons, teaspoons, fluid ounces, and milliliters\n- Clothing size reference charts for international shopping\n\nThe app is designed for quick checks without an account, setup, or complicated menus. Choose a category, enter a value, and switch conversions from a clear dropdown when more options are available.",
+        "keywords": [
+          "unit,converter,travel,metric,imperial,temperature,distance,weight,cooking,size,area,speed"
+        ],
+        "releaseNotes": "Initial App Store release with quick unit conversions, clothing size charts, light and dark themes, and clear conversion dropdowns.",
+        "promoText": "Fast unit conversions for travel, cooking, shopping, and everyday measurements.",
+        "privacyPolicyUrl": "https://github.com/mikepitts25/QuickConvert/blob/main/docs/privacy-policy.md",
+        "supportUrl": "https://github.com/mikepitts25/QuickConvert/blob/main/docs/support.md",
+        "marketingUrl": "https://github.com/mikepitts25/QuickConvert"
+      }
+    },
+    "advisory": {
+      "ageRatingOverride": "NONE",
+      "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+      "contests": "NONE",
+      "gambling": false,
+      "gamblingSimulated": "NONE",
+      "horrorOrFearThemes": "NONE",
+      "kidsAgeBand": null,
+      "koreaAgeRatingOverride": "NONE",
+      "lootBox": false,
+      "matureOrSuggestiveThemes": "NONE",
+      "medicalOrTreatmentInformation": "NONE",
+      "profanityOrCrudeHumor": "NONE",
+      "sexualContentGraphicAndNudity": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "unrestrictedWebAccess": false,
+      "violenceCartoonOrFantasy": "NONE",
+      "violenceRealistic": "NONE",
+      "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+      "advertising": true,
+      "ageAssurance": false,
+      "ageRatingOverrideV2": "NONE",
+      "developerAgeRatingInfoUrl": null,
+      "gunsOrOtherWeapons": "NONE",
+      "healthOrWellnessTopics": false,
+      "messagingAndChat": false,
+      "parentalControls": false,
+      "userGeneratedContent": false
+    },
+    "copyright": "2026 Colibri Code LLC",
+    "categories": [
+      "TRAVEL",
+      "UTILITIES"
+    ],
+    "review": {
+      "firstName": "Mike",
+      "lastName": "Pitts",
+      "email": "mike@colibricodellc.com",
+      "phone": "603-785-2711",
+      "notes": "No account or login is required. Open the app, choose a conversion category, enter a value, and select another conversion from the dropdown when available. The app displays AdMob banner ads."
+    }
+  }
+}

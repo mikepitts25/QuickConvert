@@ -1,0 +1,50 @@
+{
+  "cli": {
+    "version": ">= 16.0.1",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "production": {
+      "autoIncrement": true,
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "testflight": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_ADMOB_USE_TEST_ADS": "true"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "mike@colibricodellc.com",
+        "ascAppId": "6775202077"
+      }
+    },
+    "testflight": {
+      "ios": {
+        "appleId": "mike@colibricodellc.com",
+        "ascAppId": "6775202077"
+      }
+    }
+  }
+}

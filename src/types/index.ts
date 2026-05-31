@@ -21,10 +21,27 @@ export interface Preset {
   fromUnitId: string;
 }
 
+export type CategoryIconName =
+  | 'thermometer-lines'
+  | 'map-marker-distance'
+  | 'scale-balance'
+  | 'cup-water'
+  | 'speedometer'
+  | 'chef-hat'
+  | 'tshirt-crew'
+  | 'set-square';
+
+export interface CategoryIcon {
+  family: 'materialCommunity';
+  name: CategoryIconName;
+  color: string;
+  backgroundColor: string;
+}
+
 export interface Category {
   id: string;
   name: string;
-  icon: string;
+  icon: CategoryIcon;
   color: string;
   pairs: ConversionPair[];
   presets?: Preset[];

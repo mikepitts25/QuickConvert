@@ -1,6 +1,6 @@
 import { Category, Unit } from '../types';
 import { factors, temperatureConversion } from './conversions';
-import { ovenPresets } from './presets';
+import { temperaturePresets } from './presets';
 import { colors } from '../theme/colors';
 
 // --- Units ---
@@ -44,16 +44,27 @@ export const categories: Category[] = [
   {
     id: 'temperature',
     name: 'Temperature',
-    icon: '🌡️',
+    icon: {
+      family: 'materialCommunity',
+      name: 'thermometer-lines',
+      color: '#E11D48',
+      backgroundColor: '#FFE4E6',
+    },
     color: colors.temperature,
     pairs: [
       { from: fahrenheit, to: celsius, conversion: temperatureConversion },
     ],
+    presets: temperaturePresets,
   },
   {
     id: 'distance',
     name: 'Distance',
-    icon: '📏',
+    icon: {
+      family: 'materialCommunity',
+      name: 'map-marker-distance',
+      color: '#2563EB',
+      backgroundColor: '#DBEAFE',
+    },
     color: colors.distance,
     pairs: [
       { from: miles, to: kilometers, conversion: factors.miles_km },
@@ -65,7 +76,12 @@ export const categories: Category[] = [
   {
     id: 'weight',
     name: 'Weight',
-    icon: '⚖️',
+    icon: {
+      family: 'materialCommunity',
+      name: 'scale-balance',
+      color: '#059669',
+      backgroundColor: '#D1FAE5',
+    },
     color: colors.weight,
     pairs: [
       { from: pounds, to: kilograms, conversion: factors.pounds_kg },
@@ -75,7 +91,12 @@ export const categories: Category[] = [
   {
     id: 'volume',
     name: 'Volume',
-    icon: '🧪',
+    icon: {
+      family: 'materialCommunity',
+      name: 'cup-water',
+      color: '#7C3AED',
+      backgroundColor: '#EDE9FE',
+    },
     color: colors.volume,
     pairs: [
       { from: gallons, to: liters, conversion: factors.gallons_liters },
@@ -89,7 +110,12 @@ export const categories: Category[] = [
   {
     id: 'speed',
     name: 'Speed',
-    icon: '🚗',
+    icon: {
+      family: 'materialCommunity',
+      name: 'speedometer',
+      color: '#DB2777',
+      backgroundColor: '#FCE7F3',
+    },
     color: colors.speed,
     pairs: [
       { from: mph, to: kmh, conversion: factors.mph_kmh },
@@ -98,11 +124,14 @@ export const categories: Category[] = [
   {
     id: 'cooking',
     name: 'Cooking',
-    icon: '🍳',
+    icon: {
+      family: 'materialCommunity',
+      name: 'chef-hat',
+      color: '#EA580C',
+      backgroundColor: '#FFEDD5',
+    },
     color: colors.cooking,
-    presets: ovenPresets,
     pairs: [
-      { from: fahrenheit, to: celsius, conversion: temperatureConversion },
       { from: cups, to: milliliters, conversion: factors.cups_ml },
       { from: tablespoons, to: milliliters, conversion: factors.tbsp_ml },
       { from: teaspoons, to: milliliters, conversion: factors.tsp_ml },
@@ -112,14 +141,24 @@ export const categories: Category[] = [
   {
     id: 'clothing',
     name: 'Clothing',
-    icon: '👕',
+    icon: {
+      family: 'materialCommunity',
+      name: 'tshirt-crew',
+      color: '#4F46E5',
+      backgroundColor: '#E0E7FF',
+    },
     color: colors.clothing,
     pairs: [],
   },
   {
     id: 'area',
     name: 'Area',
-    icon: '📐',
+    icon: {
+      family: 'materialCommunity',
+      name: 'set-square',
+      color: '#0D9488',
+      backgroundColor: '#CCFBF1',
+    },
     color: colors.area,
     pairs: [
       { from: sqFeet, to: sqMeters, conversion: factors.sqft_sqm },

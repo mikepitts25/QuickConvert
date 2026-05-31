@@ -1,7 +1,8 @@
-import { View, ScrollView, Pressable, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Text, StyleSheet } from 'react-native';
 import { Preset } from '../types';
-import { colors } from '../theme/colors';
+import { useAppTheme } from '../theme/theme-context';
 import { spacing } from '../theme/spacing';
+import { getPresetChipFlexBasis } from './preset-grid';
 
 interface Props {
   presets: Preset[];
@@ -9,24 +10,38 @@ interface Props {
 }
 
 export function PresetList({ presets, onSelect }: Props) {
+  const { colors } = useAppTheme();
+  const chipFlexBasis = getPresetChipFlexBasis(presets);
+
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.label}>Quick presets</Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.container}
-      >
+      <Text style={[styles.label, { color: colors.textSecondary }]}>Quick presets</Text>
+      <View style={styles.grid}>
         {presets.map((preset) => (
           <Pressable
             key={preset.label}
             onPress={() => onSelect(preset.fromValue)}
-            style={({ pressed }) => [styles.chip, pressed && styles.pressed]}
+            style={({ pressed }) => [
+              styles.chip,
+              {
+                backgroundColor: colors.surface,
+                borderColor: colors.border,
+                flexBasis: chipFlexBasis,
+              },
+              pressed && styles.pressed,
+            ]}
           >
-            <Text style={styles.chipText}>{preset.label}</Text>
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.75}
+              style={[styles.chipText, { color: colors.textPrimary }]}
+            >
+              {preset.label}
+            </Text>
           </Pressable>
         ))}
-      </ScrollView>
+      </View>
     </View>
   );
 }
@@ -38,27 +53,29 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.textSecondary,
     marginBottom: spacing.sm,
     paddingHorizontal: spacing.xs,
   },
-  container: {
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: spacing.sm,
   },
   chip: {
-    paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 40,
+    paddingHorizontal: 8,
     paddingVertical: 10,
-    borderRadius: 20,
-    backgroundColor: colors.cooking,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#FECACA',
   },
   pressed: {
     opacity: 0.6,
   },
   chipText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
-    color: colors.textPrimary,
+    textAlign: 'center',
   },
 });

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { SizeLookupTable } from '../types';
-import { colors } from '../theme/colors';
+import { useAppTheme } from '../theme/theme-context';
 import { spacing } from '../theme/spacing';
 
 interface Props {
@@ -8,11 +8,14 @@ interface Props {
 }
 
 export function SizeTable({ table }: Props) {
+  const { colors, mode } = useAppTheme();
+  const evenRowColor = mode === 'dark' ? colors.inputBackground : '#F3F4F6';
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{table.name}</Text>
-      <View style={styles.table}>
-        <View style={styles.headerRow}>
+      <Text style={[styles.title, { color: colors.textPrimary }]}>{table.name}</Text>
+      <View style={[styles.table, { borderColor: colors.border }]}>
+        <View style={[styles.headerRow, { backgroundColor: colors.primary }]}>
           {table.columns.map((col) => (
             <View key={col} style={styles.cell}>
               <Text style={styles.headerText}>{col}</Text>
@@ -22,11 +25,14 @@ export function SizeTable({ table }: Props) {
         {table.rows.map((row, i) => (
           <View
             key={i}
-            style={[styles.row, i % 2 === 0 && styles.rowEven]}
+            style={[
+              styles.row,
+              { backgroundColor: i % 2 === 0 ? evenRowColor : colors.surface },
+            ]}
           >
             {row.map((cell, j) => (
               <View key={j} style={styles.cell}>
-                <Text style={styles.cellText}>{cell}</Text>
+                <Text style={[styles.cellText, { color: colors.textPrimary }]}>{cell}</Text>
               </View>
             ))}
           </View>
@@ -43,25 +49,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 17,
     fontWeight: '700',
-    color: colors.textPrimary,
     marginBottom: spacing.sm,
   },
   table: {
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: colors.border,
   },
   headerRow: {
     flexDirection: 'row',
-    backgroundColor: colors.primary,
   },
   row: {
     flexDirection: 'row',
-    backgroundColor: colors.surface,
-  },
-  rowEven: {
-    backgroundColor: '#F3F4F6',
   },
   cell: {
     flex: 1,
@@ -76,6 +75,5 @@ const styles = StyleSheet.create({
   },
   cellText: {
     fontSize: 14,
-    color: colors.textPrimary,
   },
 });
